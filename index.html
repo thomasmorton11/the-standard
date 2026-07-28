@@ -19,331 +19,331 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjgwIiBmaWxsPSIjMDUwNTA1Ii8+PHJlY3QgeD0iNjAiIHk9IjYwIiB3aWR0aD0iMzkyIiBoZWlnaHQ9IjM5MiIgcng9IjQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNjODEwMmUiIHN0cm9rZS13aWR0aD0iOCIvPjx0ZXh0IHg9IjI1NiIgeT0iMjIwIiBmb250LWZhbWlseT0iSW1wYWN0LCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwMCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2Y1ZWJlMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjQiPlRIRTwvdGV4dD48dGV4dCB4PSIyNTYiIHk9IjMyMCIgZm9udC1mYW1pbHk9IkltcGFjdCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMDAiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNjODEwMmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSI0Ij5TVERSRDwvdGV4dD48dGV4dCB4PSIyNTYiIHk9IjQxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNjNGI4YTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSI4Ij5DSEFSVElORzwvdGV4dD48L3N2Zz4=">
 
 <style>
-  :root {
-    --bg-0: #050505;
-    --bg-1: #0c0a0a;
-    --bg-2: #141010;
-    --panel: #18120f;
-    --panel-2: #211915;
-    --border: #2d201d;
-    --border-hot: #4a1f24;
-    --text: #f3ebe0;
-    --text-dim: #c4b8a8;
-    --muted: #6b5f55;
-    --scarlet: #c8102e;
-    --scarlet-hot: #ff1f3d;
-    --scarlet-glow: rgba(255, 31, 61, 0.35);
-    --silver: #c8c8c8;
-    --green: #4ade80;
-    --warn: #f5a623;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+   --bg-0: #050505;
+   --bg-1: #0c0a0a;
+   --bg-2: #141010;
+   --panel: #18120f;
+   --panel-2: #211915;
+   --border: #2d201d;
+   --border-hot: #4a1f24;
+   --text: #f3ebe0;
+   --text-dim: #c4b8a8;
+   --muted: #6b5f55;
+   --scarlet: #c8102e;
+   --scarlet-hot: #ff1f3d;
+   --scarlet-glow: rgba(255, 31, 61, 0.35);
+   --silver: #c8c8c8;
+   --green: #4ade80;
+   --warn: #f5a623;
+ }
+ * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
-  @keyframes pulse-red {
-    0%, 100% { box-shadow: 0 0 0 0 var(--scarlet-glow), inset 0 0 20px rgba(255,31,61,0.15); }
-    50% { box-shadow: 0 0 0 14px transparent, inset 0 0 30px rgba(255,31,61,0.3); }
-  }
-  @keyframes ember-rise {
-    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.4; }
-    100% { transform: translateY(-10vh) translateX(40px); opacity: 0; }
-  }
+ @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
+ @keyframes pulse-red {
+   0%, 100% { box-shadow: 0 0 0 0 var(--scarlet-glow), inset 0 0 20px rgba(255,31,61,0.15); }
+   50% { box-shadow: 0 0 0 14px transparent, inset 0 0 30px rgba(255,31,61,0.3); }
+ }
+ @keyframes ember-rise {
+   0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+   10% { opacity: 0.6; }
+   90% { opacity: 0.4; }
+   100% { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+ }
 
-  html, body { height: 100%; }
-  body {
-    font-family: 'Helvetica Neue', 'Arial Narrow', sans-serif;
-    background: var(--bg-0);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    background-image:
-      radial-gradient(ellipse at 50% -20%, rgba(200, 16, 46, 0.18) 0%, transparent 50%),
-      radial-gradient(ellipse at 100% 50%, rgba(255, 31, 61, 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 0% 100%, rgba(120, 10, 25, 0.12) 0%, transparent 50%),
-      linear-gradient(180deg, #0c0808 0%, #050303 100%);
-  }
-  body::after {
-    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 2;
-    background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255, 31, 61, 0.018) 2px, rgba(255, 31, 61, 0.018) 4px);
-  }
+ html, body { height: 100%; }
+ body {
+   font-family: 'Helvetica Neue', 'Arial Narrow', sans-serif;
+   background: var(--bg-0);
+   color: var(--text);
+   min-height: 100vh;
+   overflow-x: hidden;
+   position: relative;
+   background-image:
+     radial-gradient(ellipse at 50% -20%, rgba(200, 16, 46, 0.18) 0%, transparent 50%),
+     radial-gradient(ellipse at 100% 50%, rgba(255, 31, 61, 0.08) 0%, transparent 60%),
+     radial-gradient(ellipse at 0% 100%, rgba(120, 10, 25, 0.12) 0%, transparent 50%),
+     linear-gradient(180deg, #0c0808 0%, #050303 100%);
+ }
+ body::after {
+   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 2;
+   background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255, 31, 61, 0.018) 2px, rgba(255, 31, 61, 0.018) 4px);
+ }
 
-  .embers { position: fixed; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
-  .ember { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: var(--scarlet-hot); box-shadow: 0 0 4px var(--scarlet-hot); animation: ember-rise linear infinite; }
+ .embers { position: fixed; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
+ .ember { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: var(--scarlet-hot); box-shadow: 0 0 4px var(--scarlet-hot); animation: ember-rise linear infinite; }
 
-  .container { max-width: 1500px; margin: 0 auto; padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left)); position: relative; z-index: 10; }
+ .container { max-width: 1500px; margin: 0 auto; padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left)); position: relative; z-index: 10; }
 
-  header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    padding: 16px 0 24px; margin-bottom: 28px;
-    border-bottom: 1px solid var(--border); position: relative;
-  }
-  header::after {
-    content: ''; position: absolute; bottom: -1px; left: 0;
-    width: 120px; height: 2px; background: var(--scarlet);
-    box-shadow: 0 0 12px var(--scarlet-glow);
-  }
-  .brand { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
-  .brand-mark {
-    font-family: 'Impact', 'Oswald', 'Arial Black', sans-serif;
-    font-size: 13px; letter-spacing: 4px; color: var(--scarlet);
-    text-transform: uppercase; font-weight: 900;
-    border: 1px solid var(--scarlet); padding: 4px 10px;
-    text-shadow: 0 0 12px var(--scarlet-glow);
-  }
-  h1 {
-    font-family: 'Impact', 'Oswald', 'Arial Black', sans-serif;
-    font-size: clamp(32px, 5vw, 52px);
-    letter-spacing: 1px; text-transform: uppercase;
-    line-height: 0.9; font-weight: 900;
-    background: linear-gradient(180deg, #ffffff 0%, #d8d0c4 50%, #8a8077 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.8);
-  }
-  h1 .accent {
-    -webkit-text-fill-color: var(--scarlet);
-    text-shadow: 0 0 24px var(--scarlet-glow), 0 4px 30px rgba(0,0,0,0.8);
-  }
-  .tagline {
-    font-size: 11px; letter-spacing: 6px; color: var(--text-dim);
-    text-transform: uppercase; font-weight: 300; margin-top: 6px;
-  }
-  .tagline span { color: var(--scarlet); }
+ header {
+   display: flex; justify-content: space-between; align-items: flex-end;
+   padding: 16px 0 24px; margin-bottom: 28px;
+   border-bottom: 1px solid var(--border); position: relative;
+ }
+ header::after {
+   content: ''; position: absolute; bottom: -1px; left: 0;
+   width: 120px; height: 2px; background: var(--scarlet);
+   box-shadow: 0 0 12px var(--scarlet-glow);
+ }
+ .brand { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+ .brand-mark {
+   font-family: 'Impact', 'Oswald', 'Arial Black', sans-serif;
+   font-size: 13px; letter-spacing: 4px; color: var(--scarlet);
+   text-transform: uppercase; font-weight: 900;
+   border: 1px solid var(--scarlet); padding: 4px 10px;
+   text-shadow: 0 0 12px var(--scarlet-glow);
+ }
+ h1 {
+   font-family: 'Impact', 'Oswald', 'Arial Black', sans-serif;
+   font-size: clamp(32px, 5vw, 52px);
+   letter-spacing: 1px; text-transform: uppercase;
+   line-height: 0.9; font-weight: 900;
+   background: linear-gradient(180deg, #ffffff 0%, #d8d0c4 50%, #8a8077 100%);
+   -webkit-background-clip: text; background-clip: text;
+   -webkit-text-fill-color: transparent;
+   text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+ }
+ h1 .accent {
+   -webkit-text-fill-color: var(--scarlet);
+   text-shadow: 0 0 24px var(--scarlet-glow), 0 4px 30px rgba(0,0,0,0.8);
+ }
+ .tagline {
+   font-size: 11px; letter-spacing: 6px; color: var(--text-dim);
+   text-transform: uppercase; font-weight: 300; margin-top: 6px;
+ }
+ .tagline span { color: var(--scarlet); }
 
-  .top-strip {
-    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
-    padding: 14px 18px; margin-bottom: 24px;
-    background: linear-gradient(135deg, var(--panel) 0%, var(--panel-2) 100%);
-    border: 1px solid var(--border); border-left: 3px solid var(--scarlet);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);
-  }
-  .filename-input {
-    background: var(--bg-1); border: 1px solid var(--border); color: var(--text);
-    padding: 10px 14px; font-family: 'SF Mono', monospace; font-size: 13px;
-    border-radius: 2px; flex: 1; min-width: 160px; letter-spacing: 0.5px;
-  }
-  .filename-input:focus { outline: none; border-color: var(--scarlet); }
+ .top-strip {
+   display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+   padding: 14px 18px; margin-bottom: 24px;
+   background: linear-gradient(135deg, var(--panel) 0%, var(--panel-2) 100%);
+   border: 1px solid var(--border); border-left: 3px solid var(--scarlet);
+   box-shadow: 0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);
+ }
+ .filename-input {
+   background: var(--bg-1); border: 1px solid var(--border); color: var(--text);
+   padding: 10px 14px; font-family: 'SF Mono', monospace; font-size: 13px;
+   border-radius: 2px; flex: 1; min-width: 160px; letter-spacing: 0.5px;
+ }
+ .filename-input:focus { outline: none; border-color: var(--scarlet); }
 
-  .btn {
-    background: var(--panel-2); color: var(--text);
-    border: 1px solid var(--border); padding: 11px 18px;
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
-    cursor: pointer; border-radius: 2px;
-    font-family: 'Impact', 'Helvetica Neue', sans-serif;
-    transition: all 0.15s;
-  }
-  .btn:hover { border-color: var(--silver); color: var(--silver); transform: translateY(-1px); }
-  .btn.primary {
-    background: linear-gradient(180deg, var(--scarlet-hot) 0%, var(--scarlet) 100%);
-    color: #fff; border-color: var(--scarlet);
-    box-shadow: 0 2px 16px var(--scarlet-glow), inset 0 1px 0 rgba(255,255,255,0.2);
-  }
-  .btn.primary:hover {
-    background: linear-gradient(180deg, #ff4560 0%, var(--scarlet-hot) 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 24px var(--scarlet-glow), inset 0 1px 0 rgba(255,255,255,0.25);
-  }
-  .btn.danger:hover { border-color: var(--scarlet-hot); color: var(--scarlet-hot); }
+ .btn {
+   background: var(--panel-2); color: var(--text);
+   border: 1px solid var(--border); padding: 11px 18px;
+   font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+   cursor: pointer; border-radius: 2px;
+   font-family: 'Impact', 'Helvetica Neue', sans-serif;
+   transition: all 0.15s;
+ }
+ .btn:hover { border-color: var(--silver); color: var(--silver); transform: translateY(-1px); }
+ .btn.primary {
+   background: linear-gradient(180deg, var(--scarlet-hot) 0%, var(--scarlet) 100%);
+   color: #fff; border-color: var(--scarlet);
+   box-shadow: 0 2px 16px var(--scarlet-glow), inset 0 1px 0 rgba(255,255,255,0.2);
+ }
+ .btn.primary:hover {
+   background: linear-gradient(180deg, #ff4560 0%, var(--scarlet-hot) 100%);
+   transform: translateY(-1px);
+   box-shadow: 0 4px 24px var(--scarlet-glow), inset 0 1px 0 rgba(255,255,255,0.25);
+ }
+ .btn.danger:hover { border-color: var(--scarlet-hot); color: var(--scarlet-hot); }
 
-  .file-name { font-size: 10px; color: var(--silver); letter-spacing: 1.5px; text-transform: uppercase; }
-  .auto-status {
-    font-size: 9px; color: var(--green); letter-spacing: 2px; text-transform: uppercase;
-    padding: 5px 9px; border: 1px solid rgba(74, 222, 128, 0.3); border-radius: 2px;
-    background: rgba(74, 222, 128, 0.05); font-weight: 700;
-  }
-  .auto-status.saving { color: var(--warn); border-color: rgba(245, 166, 35, 0.4); background: rgba(245, 166, 35, 0.05); }
-  .lock-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
-    padding: 5px 9px; border-radius: 2px;
-    color: var(--scarlet); border: 1px solid var(--scarlet);
-    background: rgba(200, 16, 46, 0.1);
-  }
+ .file-name { font-size: 10px; color: var(--silver); letter-spacing: 1.5px; text-transform: uppercase; }
+ .auto-status {
+   font-size: 9px; color: var(--green); letter-spacing: 2px; text-transform: uppercase;
+   padding: 5px 9px; border: 1px solid rgba(74, 222, 128, 0.3); border-radius: 2px;
+   background: rgba(74, 222, 128, 0.05); font-weight: 700;
+ }
+ .auto-status.saving { color: var(--warn); border-color: rgba(245, 166, 35, 0.4); background: rgba(245, 166, 35, 0.05); }
+ .lock-badge {
+   display: inline-flex; align-items: center; gap: 6px;
+   font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+   padding: 5px 9px; border-radius: 2px;
+   color: var(--scarlet); border: 1px solid var(--scarlet);
+   background: rgba(200, 16, 46, 0.1);
+ }
 
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } }
+ .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+ @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } }
 
-  .panel {
-    background: linear-gradient(180deg, var(--panel) 0%, var(--bg-2) 100%);
-    border: 1px solid var(--border); border-radius: 3px;
-    padding: 24px; position: relative;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
-  }
-  .panel::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--scarlet) 0%, transparent 60%);
-  }
-  .panel-title {
-    font-family: 'Impact', sans-serif;
-    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--text); margin-bottom: 18px;
-    padding-bottom: 12px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 10px; font-weight: 900;
-  }
-  .panel-title::before {
-    content: ''; width: 4px; height: 14px; background: var(--scarlet);
-    box-shadow: 0 0 8px var(--scarlet-glow);
-  }
+ .panel {
+   background: linear-gradient(180deg, var(--panel) 0%, var(--bg-2) 100%);
+   border: 1px solid var(--border); border-radius: 3px;
+   padding: 24px; position: relative;
+   box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+ }
+ .panel::before {
+   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+   background: linear-gradient(90deg, var(--scarlet) 0%, transparent 60%);
+ }
+ .panel-title {
+   font-family: 'Impact', sans-serif;
+   font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+   color: var(--text); margin-bottom: 18px;
+   padding-bottom: 12px; border-bottom: 1px solid var(--border);
+   display: flex; align-items: center; gap: 10px; font-weight: 900;
+ }
+ .panel-title::before {
+   content: ''; width: 4px; height: 14px; background: var(--scarlet);
+   box-shadow: 0 0 8px var(--scarlet-glow);
+ }
 
-  .mic-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-  .mic-btn {
-    background: linear-gradient(180deg, var(--scarlet-hot) 0%, var(--scarlet) 100%);
-    color: white; border: 2px solid var(--scarlet);
-    padding: 22px 32px; font-size: 15px; letter-spacing: 3px;
-    text-transform: uppercase; font-weight: 900; cursor: pointer;
-    border-radius: 3px; transition: all 0.15s; font-family: 'Impact', sans-serif;
-    box-shadow: 0 4px 24px var(--scarlet-glow), inset 0 1px 0 rgba(255,255,255,0.25);
-  }
-  .mic-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--scarlet-glow), inset 0 1px 0 rgba(255,255,255,0.3); }
-  .mic-btn.listening {
-    background: linear-gradient(180deg, #5dd897 0%, #2eb866 100%);
-    border-color: var(--green); animation: pulse-red 1.2s infinite;
-  }
-  .mic-status { font-size: 11px; color: var(--text-dim); letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; }
-  .mic-status.live { color: var(--green); }
-  .mic-status.live::before { content: '● '; animation: flicker 1s infinite; }
+ .mic-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+ .mic-btn {
+   background: linear-gradient(180deg, var(--scarlet-hot) 0%, var(--scarlet) 100%);
+   color: white; border: 2px solid var(--scarlet);
+   padding: 22px 32px; font-size: 15px; letter-spacing: 3px;
+   text-transform: uppercase; font-weight: 900; cursor: pointer;
+   border-radius: 3px; transition: all 0.15s; font-family: 'Impact', sans-serif;
+   box-shadow: 0 4px 24px var(--scarlet-glow), inset 0 1px 0 rgba(255,255,255,0.25);
+ }
+ .mic-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--scarlet-glow), inset 0 1px 0 rgba(255,255,255,0.3); }
+ .mic-btn.listening {
+   background: linear-gradient(180deg, #5dd897 0%, #2eb866 100%);
+   border-color: var(--green); animation: pulse-red 1.2s infinite;
+ }
+ .mic-status { font-size: 11px; color: var(--text-dim); letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; }
+ .mic-status.live { color: var(--green); }
+ .mic-status.live::before { content: '● '; animation: flicker 1s infinite; }
 
-  .transcript {
-    margin-top: 18px; padding: 16px 18px;
-    background: var(--bg-1); border: 1px solid var(--border);
-    border-left: 3px solid var(--scarlet);
-    font-family: 'SF Mono', monospace; font-size: 14px;
-    min-height: 56px; word-break: break-word;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
-  }
-  .transcript.empty { color: var(--muted); font-style: italic; }
-  .transcript.live { border-left-color: var(--green); }
+ .transcript {
+   margin-top: 18px; padding: 16px 18px;
+   background: var(--bg-1); border: 1px solid var(--border);
+   border-left: 3px solid var(--scarlet);
+   font-family: 'SF Mono', monospace; font-size: 14px;
+   min-height: 56px; word-break: break-word;
+   box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+ }
+ .transcript.empty { color: var(--muted); font-style: italic; }
+ .transcript.live { border-left-color: var(--green); }
 
-  .fields { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
-  .field {
-    background: var(--bg-1); border: 1px solid var(--border); border-radius: 2px;
-    padding: 12px 14px; transition: all 0.15s;
-  }
-  .field:focus-within { border-color: var(--scarlet); box-shadow: 0 0 0 1px var(--scarlet-glow); }
-  .field.matched { border-color: var(--scarlet); background: rgba(200, 16, 46, 0.04); }
-  .field-label {
-    font-family: 'Impact', sans-serif;
-    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--scarlet); margin-bottom: 6px; font-weight: 900;
-  }
-  .field input {
-    background: transparent; border: none; color: var(--text);
-    font-family: 'SF Mono', monospace; font-size: 14px;
-    width: 100%; padding: 0; outline: none; letter-spacing: 0.5px;
-  }
-  .field input::placeholder { color: var(--muted); }
+ .fields { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+ .field {
+   background: var(--bg-1); border: 1px solid var(--border); border-radius: 2px;
+   padding: 12px 14px; transition: all 0.15s;
+ }
+ .field:focus-within { border-color: var(--scarlet); box-shadow: 0 0 0 1px var(--scarlet-glow); }
+ .field.matched { border-color: var(--scarlet); background: rgba(200, 16, 46, 0.04); }
+ .field-label {
+   font-family: 'Impact', sans-serif;
+   font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+   color: var(--scarlet); margin-bottom: 6px; font-weight: 900;
+ }
+ .field input {
+   background: transparent; border: none; color: var(--text);
+   font-family: 'SF Mono', monospace; font-size: 14px;
+   width: 100%; padding: 0; outline: none; letter-spacing: 0.5px;
+ }
+ .field input::placeholder { color: var(--muted); }
 
-  .actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+ .actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
 
-  .help-text {
-    font-size: 11px; color: var(--text-dim); line-height: 1.7; margin-top: 14px;
-    padding: 12px 14px; background: rgba(0,0,0,0.3); border-left: 2px solid var(--border);
-    font-family: 'SF Mono', monospace;
-  }
-  .help-text strong { color: var(--scarlet); font-weight: 700; }
-  .help-text em { color: var(--silver); font-style: normal; }
+ .help-text {
+   font-size: 11px; color: var(--text-dim); line-height: 1.7; margin-top: 14px;
+   padding: 12px 14px; background: rgba(0,0,0,0.3); border-left: 2px solid var(--border);
+   font-family: 'SF Mono', monospace;
+ }
+ .help-text strong { color: var(--scarlet); font-weight: 700; }
+ .help-text em { color: var(--silver); font-style: normal; }
 
-  .stats { display: flex; gap: 32px; margin-bottom: 16px; }
-  .stat-num {
-    font-family: 'Impact', sans-serif; font-size: 36px; color: var(--scarlet);
-    line-height: 1; text-shadow: 0 0 16px var(--scarlet-glow); letter-spacing: -1px;
-  }
-  .stat-label { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+ .stats { display: flex; gap: 32px; margin-bottom: 16px; }
+ .stat-num {
+   font-family: 'Impact', sans-serif; font-size: 36px; color: var(--scarlet);
+   line-height: 1; text-shadow: 0 0 16px var(--scarlet-glow); letter-spacing: -1px;
+ }
+ .stat-label { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 
-  .table-wrap { overflow-x: auto; max-height: 480px; overflow-y: auto; border: 1px solid var(--border); }
-  .table-wrap::-webkit-scrollbar { width: 8px; height: 8px; }
-  .table-wrap::-webkit-scrollbar-track { background: var(--bg-1); }
-  .table-wrap::-webkit-scrollbar-thumb { background: var(--border-hot); }
-  .table-wrap::-webkit-scrollbar-thumb:hover { background: var(--scarlet); }
+ .table-wrap { overflow-x: auto; max-height: 480px; overflow-y: auto; border: 1px solid var(--border); }
+ .table-wrap::-webkit-scrollbar { width: 8px; height: 8px; }
+ .table-wrap::-webkit-scrollbar-track { background: var(--bg-1); }
+ .table-wrap::-webkit-scrollbar-thumb { background: var(--border-hot); }
+ .table-wrap::-webkit-scrollbar-thumb:hover { background: var(--scarlet); }
 
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  th {
-    background: linear-gradient(180deg, var(--panel-2) 0%, var(--bg-2) 100%);
-    text-align: left; padding: 12px 10px;
-    font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--scarlet); font-weight: 900; font-family: 'Impact', sans-serif;
-    border-bottom: 2px solid var(--scarlet);
-    position: sticky; top: 0; z-index: 1;
-  }
-  td { padding: 10px; border-bottom: 1px solid var(--border); font-family: 'SF Mono', monospace; }
-  tr:hover td { background: rgba(200, 16, 46, 0.05); }
-  td.idx { color: var(--scarlet); width: 36px; font-weight: 700; }
-  td.del { width: 28px; }
-  .del-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 18px; padding: 0 6px; }
-  .del-btn:hover { color: var(--scarlet-hot); }
+ table { width: 100%; border-collapse: collapse; font-size: 12px; }
+ th {
+   background: linear-gradient(180deg, var(--panel-2) 0%, var(--bg-2) 100%);
+   text-align: left; padding: 12px 10px;
+   font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+   color: var(--scarlet); font-weight: 900; font-family: 'Impact', sans-serif;
+   border-bottom: 2px solid var(--scarlet);
+   position: sticky; top: 0; z-index: 1;
+ }
+ td { padding: 10px; border-bottom: 1px solid var(--border); font-family: 'SF Mono', monospace; }
+ tr:hover td { background: rgba(200, 16, 46, 0.05); }
+ td.idx { color: var(--scarlet); width: 36px; font-weight: 700; }
+ td.del { width: 28px; }
+ .del-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 18px; padding: 0 6px; }
+ .del-btn:hover { color: var(--scarlet-hot); }
 
-  .toast {
-    position: fixed; top: 24px; right: 24px;
-    background: var(--panel); border: 1px solid var(--scarlet); border-left: 4px solid var(--scarlet);
-    color: var(--text); padding: 14px 22px; border-radius: 2px;
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
-    font-family: 'Impact', sans-serif;
-    opacity: 0; transition: opacity 0.3s, transform 0.3s; pointer-events: none;
-    z-index: 1000; transform: translateX(20px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 24px var(--scarlet-glow);
-  }
-  .toast.show { opacity: 1; transform: translateX(0); }
-  .toast.error { border-color: var(--warn); border-left-color: var(--warn); }
-  .toast.success { border-color: var(--green); border-left-color: var(--green); }
+ .toast {
+   position: fixed; top: 24px; right: 24px;
+   background: var(--panel); border: 1px solid var(--scarlet); border-left: 4px solid var(--scarlet);
+   color: var(--text); padding: 14px 22px; border-radius: 2px;
+   font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+   font-family: 'Impact', sans-serif;
+   opacity: 0; transition: opacity 0.3s, transform 0.3s; pointer-events: none;
+   z-index: 1000; transform: translateX(20px);
+   box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 24px var(--scarlet-glow);
+ }
+ .toast.show { opacity: 1; transform: translateX(0); }
+ .toast.error { border-color: var(--warn); border-left-color: var(--warn); }
+ .toast.success { border-color: var(--green); border-left-color: var(--green); }
 
-  /* Password Modal */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 5000;
-    background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
-    display: none; align-items: center; justify-content: center; padding: 24px;
-  }
-  .modal-overlay.active { display: flex; }
-  .modal-overlay::before {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background: radial-gradient(circle at 30% 20%, rgba(255, 31, 61, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 70% 80%, rgba(200, 16, 46, 0.12) 0%, transparent 40%);
-  }
-  .modal {
-    background: linear-gradient(180deg, var(--panel) 0%, var(--bg-1) 100%);
-    border: 1px solid var(--scarlet); border-radius: 4px;
-    padding: 40px; max-width: 480px; width: 100%; position: relative;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.8), 0 0 60px var(--scarlet-glow);
-  }
-  .modal::before {
-    content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, transparent 0%, var(--scarlet) 50%, transparent 100%);
-  }
-  .modal-mark {
-    font-family: 'Impact', sans-serif;
-    font-size: 11px; letter-spacing: 5px; color: var(--scarlet);
-    text-transform: uppercase; font-weight: 900; margin-bottom: 6px;
-    text-shadow: 0 0 16px var(--scarlet-glow);
-  }
-  .modal-title {
-    font-family: 'Impact', sans-serif;
-    font-size: 36px; letter-spacing: 2px; text-transform: uppercase;
-    line-height: 1; font-weight: 900; color: var(--text); margin-bottom: 18px;
-  }
-  .modal-title .accent { color: var(--scarlet); text-shadow: 0 0 20px var(--scarlet-glow); }
-  .modal-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; margin-bottom: 24px; }
-  .modal-input {
-    width: 100%; background: var(--bg-0); border: 1px solid var(--border);
-    color: var(--text); padding: 14px 16px;
-    font-family: 'SF Mono', monospace; font-size: 16px;
-    border-radius: 2px; letter-spacing: 2px;
-  }
-  .modal-input:focus {
-    outline: none; border-color: var(--scarlet);
-    box-shadow: 0 0 0 1px var(--scarlet), 0 0 20px var(--scarlet-glow);
-  }
-  .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
-  .modal-actions .btn { flex: 1; padding: 14px; font-size: 12px; }
-  .modal-error {
-    font-size: 11px; color: var(--warn); margin-top: 12px;
-    letter-spacing: 1px; text-transform: uppercase; font-weight: 700;
-    min-height: 16px; font-family: 'Impact', sans-serif;
-  }
-  .modal-hint { font-size: 10px; color: var(--muted); margin-top: 14px; letter-spacing: 1px; line-height: 1.5; }
+ /* Password Modal */
+ .modal-overlay {
+   position: fixed; inset: 0; z-index: 5000;
+   background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
+   display: none; align-items: center; justify-content: center; padding: 24px;
+ }
+ .modal-overlay.active { display: flex; }
+ .modal-overlay::before {
+   content: ''; position: absolute; inset: 0; pointer-events: none;
+   background: radial-gradient(circle at 30% 20%, rgba(255, 31, 61, 0.15) 0%, transparent 40%),
+               radial-gradient(circle at 70% 80%, rgba(200, 16, 46, 0.12) 0%, transparent 40%);
+ }
+ .modal {
+   background: linear-gradient(180deg, var(--panel) 0%, var(--bg-1) 100%);
+   border: 1px solid var(--scarlet); border-radius: 4px;
+   padding: 40px; max-width: 480px; width: 100%; position: relative;
+   box-shadow: 0 24px 80px rgba(0,0,0,0.8), 0 0 60px var(--scarlet-glow);
+ }
+ .modal::before {
+   content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 3px;
+   background: linear-gradient(90deg, transparent 0%, var(--scarlet) 50%, transparent 100%);
+ }
+ .modal-mark {
+   font-family: 'Impact', sans-serif;
+   font-size: 11px; letter-spacing: 5px; color: var(--scarlet);
+   text-transform: uppercase; font-weight: 900; margin-bottom: 6px;
+   text-shadow: 0 0 16px var(--scarlet-glow);
+ }
+ .modal-title {
+   font-family: 'Impact', sans-serif;
+   font-size: 36px; letter-spacing: 2px; text-transform: uppercase;
+   line-height: 1; font-weight: 900; color: var(--text); margin-bottom: 18px;
+ }
+ .modal-title .accent { color: var(--scarlet); text-shadow: 0 0 20px var(--scarlet-glow); }
+ .modal-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; margin-bottom: 24px; }
+ .modal-input {
+   width: 100%; background: var(--bg-0); border: 1px solid var(--border);
+   color: var(--text); padding: 14px 16px;
+   font-family: 'SF Mono', monospace; font-size: 16px;
+   border-radius: 2px; letter-spacing: 2px;
+ }
+ .modal-input:focus {
+   outline: none; border-color: var(--scarlet);
+   box-shadow: 0 0 0 1px var(--scarlet), 0 0 20px var(--scarlet-glow);
+ }
+ .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
+ .modal-actions .btn { flex: 1; padding: 14px; font-size: 12px; }
+ .modal-error {
+   font-size: 11px; color: var(--warn); margin-top: 12px;
+   letter-spacing: 1px; text-transform: uppercase; font-weight: 700;
+   min-height: 16px; font-family: 'Impact', sans-serif;
+ }
+ .modal-hint { font-size: 10px; color: var(--muted); margin-top: 14px; letter-spacing: 1px; line-height: 1.5; }
 
-  .app-hidden { filter: blur(20px); pointer-events: none; user-select: none; }
+ .app-hidden { filter: blur(20px); pointer-events: none; user-select: none; }
 </style>
 </head>
 <body>
@@ -351,88 +351,89 @@
 <div class="embers" id="embers"></div>
 
 <div class="modal-overlay active" id="authModal">
-  <div class="modal">
-    <div class="modal-mark">★ SECURE ACCESS</div>
-    <div class="modal-title">THE <span class="accent">STANDARD</span></div>
-    <div class="modal-desc" id="modalDesc">Initializing...</div>
-    <input type="password" class="modal-input" id="pwInput" placeholder="ENTER PASSWORD" autocomplete="off">
-    <input type="password" class="modal-input" id="pwConfirm" placeholder="CONFIRM PASSWORD" autocomplete="off" style="margin-top: 10px;">
-    <div class="modal-error" id="modalError"></div>
-    <div class="modal-actions">
-      <button class="btn primary" id="authBtn" onclick="handleAuth()">⟶ UNLOCK</button>
-    </div>
-    <div class="modal-hint">
-      AES-256-GCM with PBKDF2 key derivation (250k iterations).
-      <strong style="color: var(--scarlet);">If you forget your password, your data is unrecoverable by design.</strong>
-    </div>
-  </div>
+ <div class="modal">
+   <div class="modal-mark">★ SECURE ACCESS</div>
+   <div class="modal-title">THE <span class="accent">STANDARD</span></div>
+   <div class="modal-desc" id="modalDesc">Initializing...</div>
+   <input type="password" class="modal-input" id="pwInput" placeholder="ENTER PASSWORD" autocomplete="off">
+   <input type="password" class="modal-input" id="pwConfirm" placeholder="CONFIRM PASSWORD" autocomplete="off" style="margin-top: 10px;">
+   <div class="modal-error" id="modalError"></div>
+   <div class="modal-actions">
+     <button class="btn primary" id="authBtn" onclick="handleAuth()">⟶ UNLOCK</button>
+   </div>
+   <div class="modal-hint">
+     AES-256-GCM with PBKDF2 key derivation (250k iterations).
+     <strong style="color: var(--scarlet);">If you forget your password, your data is unrecoverable by design.</strong>
+   </div>
+ </div>
 </div>
 
 <div class="container app-hidden" id="app">
-  <header>
-    <div class="brand">
-      <div class="brand-mark">★ THE STANDARD</div>
-      <div>
-        <h1>DEFENSIVE <span class="accent">CHARTING</span></h1>
-        <div class="tagline">VOICE <span>→</span> DATA <span>→</span> EVERY REP, EVERY DAY</div>
-      </div>
-    </div>
-  </header>
+ <header>
+   <div class="brand">
+     <div class="brand-mark">★ THE STANDARD</div>
+     <div>
+       <h1>DEFENSIVE <span class="accent">CHARTING</span></h1>
+       <div class="tagline">VOICE <span>→</span> DATA <span>→</span> EVERY REP, EVERY DAY</div>
+     </div>
+   </div>
+ </header>
 
-  <div class="top-strip">
-    <input type="text" class="filename-input" id="filename" value="game_chart" placeholder="filename">
-    <button class="btn primary" onclick="saveFile()">⬇ SAVE</button>
-    <button class="btn" onclick="document.getElementById('loadInput').click()">⬆ LOAD</button>
-    <input type="file" id="loadInput" accept=".enc,.json" onchange="loadFile(event)" style="display:none;">
-    <button class="btn" onclick="exportCSV()">⎘ EXPORT CSV</button>
-    <button class="btn danger" onclick="resetAll()">✕ RESET</button>
-    <span class="lock-badge">  AES-256</span>
-    <span class="auto-status" id="autoStatus">AUTO-SAVE: ON</span>
-    <span class="file-name" id="loadedName"></span>
-  </div>
+ <div class="top-strip">
+   <input type="text" class="filename-input" id="filename" value="game_chart" placeholder="filename">
+   <button class="btn primary" onclick="saveFile()">⬇ SAVE</button>
+   <button class="btn" onclick="document.getElementById('loadInput').click()">⬆ LOAD</button>
+   <input type="file" id="loadInput" accept=".enc,.json" onchange="loadFile(event)" style="display:none;">
+   <button class="btn" onclick="exportCSV()">⎘ EXPORT CSV</button>
+   <button class="btn danger" onclick="resetAll()">✕ RESET</button>
+   <span class="lock-badge">🔒 AES-256</span>
+   <span class="auto-status" id="autoStatus">AUTO-SAVE: ON</span>
+   <span class="file-name" id="loadedName"></span>
+ </div>
 
-  <div class="grid">
-    <div class="panel">
-      <div class="panel-title">VOICE ENTRY</div>
-      <div class="mic-row">
-        <button class="mic-btn" id="micBtn" onclick="toggleMic()">  TAP TO SPEAK</button>
-        <span class="mic-status" id="micStatus">Ready</span>
-      </div>
-      <div class="transcript empty" id="transcript">Say a play — e.g. "nickel, over, nike, plug m-a, three buzz"</div>
+ <div class="grid">
+   <div class="panel">
+     <div class="panel-title">VOICE ENTRY</div>
+     <div class="mic-row">
+       <button class="mic-btn" id="micBtn" onclick="toggleMic()">🎤 TAP TO SPEAK</button>
+       <span class="mic-status" id="micStatus">Ready</span>
+     </div>
+     <div class="transcript empty" id="transcript">Say a play — e.g. "odd, sim three down internal, m-plug, fence two tampa"</div>
 
-      <div class="fields">
-        <div class="field" id="field-personnel"><div class="field-label">Personnel</div><input type="text" id="f-personnel" placeholder="—"></div>
-        <div class="field" id="field-front"><div class="field-label">Front</div><input type="text" id="f-front" placeholder="—"></div>
-        <div class="field" id="field-stunt"><div class="field-label">Stunt</div><input type="text" id="f-stunt" placeholder="—"></div>
-        <div class="field" id="field-pressure"><div class="field-label">Pressure</div><input type="text" id="f-pressure" placeholder="—"></div>
-        <div class="field" id="field-coverage" style="grid-column: span 2;"><div class="field-label">Coverage</div><input type="text" id="f-coverage" placeholder="—"></div>
-      </div>
+     <div class="fields">
+       <div class="field" id="field-personnel"><div class="field-label">Personnel</div><input type="text" id="f-personnel" placeholder="—"></div>
+       <div class="field" id="field-front"><div class="field-label">Front</div><input type="text" id="f-front" placeholder="—"></div>
+       <div class="field" id="field-stunt"><div class="field-label">Stunt</div><input type="text" id="f-stunt" placeholder="—"></div>
+       <div class="field" id="field-pressureFamily"><div class="field-label">Pressure Family</div><input type="text" id="f-pressureFamily" placeholder="—"></div>
+       <div class="field" id="field-pressure"><div class="field-label">Pressure Type</div><input type="text" id="f-pressure" placeholder="—"></div>
+       <div class="field" id="field-coverage"><div class="field-label">Coverage</div><input type="text" id="f-coverage" placeholder="—"></div>
+     </div>
 
-      <div class="actions">
-        <button class="btn primary" onclick="addPlay()">＋ ADD PLAY</button>
-        <button class="btn" onclick="clearFields()">CLEAR</button>
-      </div>
+     <div class="actions">
+       <button class="btn primary" onclick="addPlay()">＋ ADD PLAY</button>
+       <button class="btn" onclick="clearFields()">CLEAR</button>
+     </div>
 
-      <div class="help-text">
-        <strong>SPACE</strong> mic · <strong>ENTER</strong> add · <strong>ESC</strong> clear<br>
-        <em>"base over nike cover three"</em> · <em>"dime split mug w-bullet two man"</em> · <em>"nickel okie odd j-rifle three buzz weak"</em>
-      </div>
-    </div>
+     <div class="help-text">
+       <strong>SPACE</strong> mic · <strong>ENTER</strong> add · <strong>ESC</strong> clear<br>
+       <em>"odd sim three down fld rifle s-rifle three buzz"</em> · <em>"fld under pirate one hole"</em> · <em>"okie 51 w five down blades blades one fire"</em>
+     </div>
+   </div>
 
-    <div class="panel">
-      <div class="panel-title">PLAYS LOGGED</div>
-      <div class="stats">
-        <div><div class="stat-num" id="playCount">0</div><div class="stat-label">Total</div></div>
-        <div><div class="stat-num" id="passCount">—</div><div class="stat-label">Last Saved</div></div>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>#</th><th>Personnel</th><th>Front</th><th>Stunt</th><th>Pressure</th><th>Coverage</th><th></th></tr></thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+   <div class="panel">
+     <div class="panel-title">PLAYS LOGGED</div>
+     <div class="stats">
+       <div><div class="stat-num" id="playCount">0</div><div class="stat-label">Total</div></div>
+       <div><div class="stat-num" id="passCount">—</div><div class="stat-label">Last Saved</div></div>
+     </div>
+     <div class="table-wrap">
+       <table>
+         <thead><tr><th>#</th><th>Personnel</th><th>Front</th><th>Stunt</th><th>Press Fam</th><th>Press Type</th><th>Coverage</th><th></th></tr></thead>
+         <tbody id="tbody"></tbody>
+       </table>
+     </div>
+   </div>
+ </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -445,116 +446,186 @@ const AUTOSAVE_KEY = "def_charting_autosave_v2";
 let cryptoKey = null;
 
 async function deriveKey(password, salt) {
-  const enc = new TextEncoder();
-  const baseKey = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
-  return crypto.subtle.deriveKey(
-    { name: "PBKDF2", salt, iterations: PBKDF2_ITERATIONS, hash: "SHA-256" },
-    baseKey, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]
-  );
+ const enc = new TextEncoder();
+ const baseKey = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
+ return crypto.subtle.deriveKey(
+   { name: "PBKDF2", salt, iterations: PBKDF2_ITERATIONS, hash: "SHA-256" },
+   baseKey, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]
+ );
 }
 
 async function encryptJSON(data, key) {
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const enc = new TextEncoder();
-  const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, enc.encode(JSON.stringify(data)));
-  return { iv: Array.from(iv), ct: Array.from(new Uint8Array(ciphertext)) };
+ const iv = crypto.getRandomValues(new Uint8Array(12));
+ const enc = new TextEncoder();
+ const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, enc.encode(JSON.stringify(data)));
+ return { iv: Array.from(iv), ct: Array.from(new Uint8Array(ciphertext)) };
 }
 
 async function decryptJSON(payload, key) {
-  const iv = new Uint8Array(payload.iv);
-  const ct = new Uint8Array(payload.ct);
-  const plaintext = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ct);
-  return JSON.parse(new TextDecoder().decode(plaintext));
+ const iv = new Uint8Array(payload.iv);
+ const ct = new Uint8Array(payload.ct);
+ const plaintext = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ct);
+ return JSON.parse(new TextDecoder().decode(plaintext));
 }
 
 function randomSalt() { return crypto.getRandomValues(new Uint8Array(16)); }
 
 // AUTH
 async function handleAuth() {
-  const pw = document.getElementById('pwInput').value;
-  const confirmPw = document.getElementById('pwConfirm').value;
-  const errEl = document.getElementById('modalError');
-  errEl.textContent = '';
+ const pw = document.getElementById('pwInput').value;
+ const confirmPw = document.getElementById('pwConfirm').value;
+ const errEl = document.getElementById('modalError');
+ errEl.textContent = '';
 
-  if (!pw || pw.length < 4) { errEl.textContent = "Password must be at least 4 characters"; return; }
+ if (!pw || pw.length < 4) { errEl.textContent = "Password must be at least 4 characters"; return; }
 
-  const stored = localStorage.getItem(VERIFY_KEY);
+ const stored = localStorage.getItem(VERIFY_KEY);
 
-  if (!stored) {
-    if (pw !== confirmPw) { errEl.textContent = "Passwords don't match"; return; }
-    try {
-      const salt = randomSalt();
-      const key = await deriveKey(pw, salt);
-      const marker = await encryptJSON({ verify: "ok", created: new Date().toISOString() }, key);
-      localStorage.setItem(VERIFY_KEY, JSON.stringify({ salt: Array.from(salt), marker }));
-      cryptoKey = key;
-      unlockApp();
-      toast("Encryption initialized", false, 'success');
-    } catch (e) { errEl.textContent = "Setup failed: " + e.message; }
-  } else {
-    try {
-      const { salt, marker } = JSON.parse(stored);
-      const key = await deriveKey(pw, new Uint8Array(salt));
-      await decryptJSON(marker, key);
-      cryptoKey = key;
-      unlockApp();
-      await restoreAutoSave();
-    } catch (e) {
-      errEl.textContent = "Wrong password";
-      document.getElementById('pwInput').value = '';
-      document.getElementById('pwInput').focus();
-    }
-  }
+ if (!stored) {
+   if (pw !== confirmPw) { errEl.textContent = "Passwords don't match"; return; }
+   try {
+     const salt = randomSalt();
+     const key = await deriveKey(pw, salt);
+     const marker = await encryptJSON({ verify: "ok", created: new Date().toISOString() }, key);
+     localStorage.setItem(VERIFY_KEY, JSON.stringify({ salt: Array.from(salt), marker }));
+     cryptoKey = key;
+     unlockApp();
+     toast("Encryption initialized", false, 'success');
+   } catch (e) { errEl.textContent = "Setup failed: " + e.message; }
+ } else {
+   try {
+     const { salt, marker } = JSON.parse(stored);
+     const key = await deriveKey(pw, new Uint8Array(salt));
+     await decryptJSON(marker, key);
+     cryptoKey = key;
+     unlockApp();
+     await restoreAutoSave();
+   } catch (e) {
+     errEl.textContent = "Wrong password";
+     document.getElementById('pwInput').value = '';
+     document.getElementById('pwInput').focus();
+   }
+ }
 }
 
 function unlockApp() {
-  document.getElementById('authModal').classList.remove('active');
-  document.getElementById('app').classList.remove('app-hidden');
-  document.getElementById('pwInput').value = '';
-  document.getElementById('pwConfirm').value = '';
+ document.getElementById('authModal').classList.remove('active');
+ document.getElementById('app').classList.remove('app-hidden');
+ document.getElementById('pwInput').value = '';
+ document.getElementById('pwConfirm').value = '';
 }
 
 function setupAuthModal() {
-  const stored = localStorage.getItem(VERIFY_KEY);
-  const confirmField = document.getElementById('pwConfirm');
-  const desc = document.getElementById('modalDesc');
-  if (stored) {
-    confirmField.style.display = 'none';
-    desc.textContent = "Enter your password to decrypt your charting data.";
-  } else {
-    confirmField.style.display = 'block';
-    desc.textContent = "First time here. Set a password to encrypt your charting data with AES-256. You'll need this password every session.";
-  }
+ const stored = localStorage.getItem(VERIFY_KEY);
+ const confirmField = document.getElementById('pwConfirm');
+ const desc = document.getElementById('modalDesc');
+ if (stored) {
+   confirmField.style.display = 'none';
+   desc.textContent = "Enter your password to decrypt your charting data.";
+ } else {
+   confirmField.style.display = 'block';
+   desc.textContent = "First time here. Set a password to encrypt your charting data with AES-256. You'll need this password every session.";
+ }
 }
 
 document.getElementById('pwInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    if (document.getElementById('pwConfirm').style.display === 'none') handleAuth();
-    else document.getElementById('pwConfirm').focus();
-  }
+ if (e.key === 'Enter') {
+   if (document.getElementById('pwConfirm').style.display === 'none') handleAuth();
+   else document.getElementById('pwConfirm').focus();
+ }
 });
 document.getElementById('pwConfirm').addEventListener('keydown', e => {
-  if (e.key === 'Enter') handleAuth();
+ if (e.key === 'Enter') handleAuth();
 });
 
-// TAXONOMY
+// ============================================================
+// FIELDS
+// ============================================================
+const FIELDS = ['personnel','front','stunt','pressureFamily','pressure','coverage'];
+
+// ============================================================
+// TAXONOMY  (findMatch sorts by length desc, so longest phrase wins
+//            regardless of array order)
+// ============================================================
 const TAXONOMY = {
-  personnel: ["little nickel","big nickel","rush nickel","little dime","big dime","big base","goal line","nickel","dime","cinco","base","jumbo"],
-  front: ["goal line bear","nickel bear","bear choke","5-1 bear","five one bear","split muggs","split mug","noc mug","noc","nickel okie 5 jack walk","nickel okie jack walk","okie nickel walk boundary","okie nickel walk","okie nickel jack walk","okie nickel / jack walk","nickel okie","nickel odd muggs","nickel odd stack","nickel odd","odd nickel jack walk","odd nickel / jack walk","okie sam jack walk","okie sam / jack walk","okie 5 sam walk","okie 5 jack walk","okie sam walk","okie jack walk","okie 5","okie","odd sam jack walk","odd sam / jack walk","odd","nickel over solid","nickel over g","nickel under g","nickel over","nickel under","nickel tite","nickel heads","nickel split","over solid","under solid","over g","under g","under-s","under s","over heavy","under sam","heavy","load","over 4i","under 4i","over wild","under wild","over will","under will","tite","heads","split","solid","over","under","bear","okie shade","okie stack","okie 51m","okie 51w","okie 51","okie fw","okie bs","okie float","okie f","okie b walk","okie b","odd shade","odd bump","odd mug","odd b","odd float","bobcat"],
-  stunt: ["sloppy dog","bear twist","double tar","dbl tar","tar en","en te","w-pick","m-pick","w pick","m pick","chaos","twist","loop","eat","nike","nitro","pirate","slant","angle","read","3er","5er","9er","rock","tn","nt","et","te","tar"],
-  pressure: ["plug m-a","plug m-b","plug w-1","plug w-2","plug ma","plug mb","plug w1","plug w2","okie plug w-1","okie plug m-a","okie plug w1","okie plug ma","broncox","bronco x","bronco","okie broncox","okie bronco x","okie bronco","odd broncox","odd bronco x","odd bronco","mohawk","moscow","fs mohawk","$ mohawk","fs moscow","$ moscow","nkl-rifle / te","nkl rifle te","nkl-rifle","nkl rifle","nickel rifle","$-rifle","$ rifle","dollar rifle","s-rifle","s rifle","m-rifle","m rifle","mike rifle","w-rifle","w rifle","will rifle","fs-rifle","fs rifle","free safety rifle","n-rifle","n rifle","okie n-rifle","okie j-rifle","okie n rifle","okie j rifle","odd n-rifle","odd j-rifle","odd n rifle","odd j rifle","double rifle","dbl rifle","corner spur","spur","m-bullet","w-bullet","m bullet","w bullet","n-spur","$-spur","fs-spur","chop","corner / mike raven","corner mike raven","raven","okie steeler straight","okie bndy steeler straight","okie steeler sw","okie bndy steeler sw","okie bndy steeler","okie steeler","okie smoke","okie bndy smoke","okie blades","okie swords","odd swords","odd blades","steeler straight","steeler switch","steeler sw","m/w steeler","mw steeler","corner steeler","fs steeler","steeler","corner mix","fs mix","$ mix","mix","corner smoke","fs smoke","smoke","triple a","all out","n-spark","$-spark","corner-spark","fs-spark","double edge","dbl edge","double b","dbl b","bam"],
-  coverage: ["0 dbl hole","0 double hole","0 hole","cover 0","cover zero","0","1 hole","1 robber","1 fire","18 hole","cover 1","cover one","1 adjust","adjust","28 tampa","28 man","2 tampa","2 man","2 trap","2 tilt roc","2 tilt","2 invert","2 tricky fld invert","2 tricky bdy invert","2 tricky dbl invert","2 tricky","cover 2","cover two","3 sky wk drop","3 sky wk","3 sky roc","3 sky","3 buzz wk","3 buzz","38 buzz wk","38 buzz","38 cloud","3 cloud fld","3 cloud bdy","3 cloud","3 fire roc","3 fire","32 fire","32 fire hot","country 3","country three","country cover 3","cover 3","cover three","4 flats","4 sos","4 palms","4 solo","4 mini","cover 4","cover four","quarters","6 opp","6 invert","6 trap","6 mini","cover 6","cover six"]
+ personnel: ["little nickel","big nickel","rush nickel","little dime","big dime","big base","goal line","nickel","dime","cinco","base","jumbo"],
+
+ front: [
+   // --- from DATA_EXAMPLES call sheet ---
+   "fld under g mug","fld over g mug","fld under g","fld over g","fld under mug","fld over mug",
+   "fld over mike","fld over will","fld over sam","fld under sam","fld under","fld over",
+   "over g mug","over g","under g","over mug","under mug","over sam","under sam","over will","under will","over mike","under mike",
+   "under solid choke","under solid","over solid","under choke","over choke",
+   "split rush","split muggs","split mug","split",
+   "odd muggs","odd mug","odd f mug","odd f","odd b","odd float","odd stack","odd shade","odd bump","odd",
+   "okie 51 w bear","okie 51 w","okie 51 m","okie 51 will","okie 51 mike","okie 51","okie b walk","okie b","okie f","okie float","okie shade","okie stack","okie",
+   "heads tar","heads",
+   "bear choke","bear","gaps","noc fld","noc mug","noc",
+   "tite","solid","over","under","load","heavy","bobcat",
+   // --- legacy nickel-tier fronts retained ---
+   "nickel over solid","nickel over g","nickel under g","nickel over","nickel under","nickel tite","nickel heads","nickel split",
+   "nickel okie","nickel odd muggs","nickel odd stack","nickel odd"
+ ],
+
+ stunt: [
+   "m-pick twist","m-pick e","m-pick n","m-pick","w-pick","s-pick",
+   "sloppy dog","bear twist","double tar","dbl tar","tar en","en te",
+   "dbl et","3 er","5 er","9er","3er","5er",
+   "chaos","twist","loop","eat","nike","nitro","pirate","slant","angle","read",
+   "en","ne","tt","tn","nt","et","te","tar"
+ ],
+
+ // PRESSURE TYPE  (STEELER and STEELER STRAIGHT kept as separate blitzes)
+ pressure: [
+   "m-plug","w-plug","s-plug",
+   "ss-rifle","n-rifle","s-rifle","m-rifle","w-rifle","chop",
+   "ss-spur","m-spur","s-spur","w-spur",
+   "steeler straight","steeler switch","steeler",
+   "straight","switch",
+   "blades","smoke","mix","cam",
+   "bronco x +","bronco x","broncox","bronco",
+   "ms moscow","moscow","mohawk",
+   "dbl rifle","dbl spur","dbl b +","dbl b",
+   // legacy retained (harmless if unused)
+   "$-rifle","fs-rifle","nkl-rifle","n-spur","$-spur","fs-spur","spur","corner spur",
+   "raven","triple a","all out"
+ ]
 };
 
+// COVERAGE — parsed compositionally (base number/GL + chained tags, optional FENCE prefix)
+const COV_TAGS = [
+ "dbl sky","tilt roc","bdy inv","fld inv","dbl inv",
+ "tampa","robber","country","tricky","flats","palms","adjust",
+ "buzz","sky","fire","roc","mini","solo","hole","cld","man",
+ "sos","trap","inv","drop","unb","opp","tilt","wk"
+];
+const COV_BASE = /^(r[0246]|gl|18|38|48|[012346])$/;
+
+// PRESSURE FAMILY location vocabulary (specific first)
+const PF_LOCATIONS = [
+ "fld steeler","bdy steeler",
+ "fld smoke","bdy smoke",
+ "fld rifle","bdy rifle","dbl rifle",
+ "fld spur","bdy spur","dbl spur",
+ "fld mix","bdy mix",
+ "dbl b +","dbl b",
+ "blades (chop)","blades",
+ "internal","cam"
+];
+
 const ALIASES = [
-  [/\bzero\b/g,"0"],[/\bone\b/g,"1"],[/\btwo\b/g,"2"],[/\bthree\b/g,"3"],[/\bfour\b/g,"4"],[/\bfive\b/g,"5"],[/\bsix\b/g,"6"],[/\bnine\b/g,"9"],[/\beighteen\b/g,"18"],
-  [/\btwenty[- ]?eight\b/g,"28"],[/\bthirty[- ]?two\b/g,"32"],[/\bthirty[- ]?eight\b/g,"38"],
-  [/\bok\b/g,"okie"],[/\bokey\b/g,"okie"],[/\boakey\b/g,"okie"],[/\bnickle\b/g,"nickel"],
-  [/\bbiz\b/g,"buzz"],[/\bbuz\b/g,"buzz"],
-  [/\bweak\b/g,"wk"],[/\bfield\b/g,"fld"],[/\bboundary\b/g,"bdy"],[/\bdouble\b/g,"dbl"],
-  [/\bcover\b/g,""],[/\bcoverage\b/g,""],
-  [/\bdollar\b/g,"$"],[/\bs[\- ]rifle\b/g,"$-rifle"],
-  [/[—–]/g,"-"],
+ [/\bzero\b/g,"0"],[/\bone\b/g,"1"],[/\btwo\b/g,"2"],[/\bthree\b/g,"3"],[/\bfour\b/g,"4"],[/\bfive\b/g,"5"],[/\bsix\b/g,"6"],[/\bnine\b/g,"9"],[/\beighteen\b/g,"18"],
+ [/\btwenty[- ]?eight\b/g,"28"],[/\bthirty[- ]?two\b/g,"32"],[/\bthirty[- ]?eight\b/g,"38"],[/\bforty[- ]?eight\b/g,"48"],[/\bfifty[- ]?one\b/g,"51"],
+ [/\bok\b/g,"okie"],[/\bokey\b/g,"okie"],[/\boakey\b/g,"okie"],[/\bnickle\b/g,"nickel"],
+ [/\bbass\b/g,"base"],
+ [/\bbiz\b/g,"buzz"],[/\bbuz\b/g,"buzz"],
+ [/\brock\b/g,"roc"],
+ [/\binvert\b/g,"inv"],[/\bcloud\b/g,"cld"],
+ [/\bg l\b/g,"gl"],
+ [/\bweak\b/g,"wk"],[/\bfield\b/g,"fld"],[/\bboundary\b/g,"bdy"],[/\bdouble\b/g,"dbl"],
+ [/\bcover\b/g,""],[/\bcoverage\b/g,""],
+ [/\bdollar\b/g,"$"],[/\bs[\- ]rifle\b/g,"$-rifle"],
+ [/[—–]/g,"-"],
 ];
 
 // STATE
@@ -566,335 +637,412 @@ let recognitionShouldRun = false;
 
 // AUTO-SAVE (encrypted)
 async function autoSave() {
-  if (!cryptoKey) return;
-  try {
-    const data = { savedAt: new Date().toISOString(), plays, filename: document.getElementById('filename').value };
-    const encrypted = await encryptJSON(data, cryptoKey);
-    localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(encrypted));
-    flashAutoStatus();
-  } catch (e) { console.warn("Auto-save failed:", e); }
+ if (!cryptoKey) return;
+ try {
+   const data = { savedAt: new Date().toISOString(), plays, filename: document.getElementById('filename').value };
+   const encrypted = await encryptJSON(data, cryptoKey);
+   localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(encrypted));
+   flashAutoStatus();
+ } catch (e) { console.warn("Auto-save failed:", e); }
 }
 
 function flashAutoStatus() {
-  const el = document.getElementById('autoStatus');
-  if (!el) return;
-  el.textContent = "● ENCRYPTING";
-  el.classList.add('saving');
-  clearTimeout(window._autoFlashTimer);
-  window._autoFlashTimer = setTimeout(() => {
-    const ts = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-    el.textContent = "Saved " + ts;
-    el.classList.remove('saving');
-  }, 400);
+ const el = document.getElementById('autoStatus');
+ if (!el) return;
+ el.textContent = "● ENCRYPTING";
+ el.classList.add('saving');
+ clearTimeout(window._autoFlashTimer);
+ window._autoFlashTimer = setTimeout(() => {
+   const ts = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+   el.textContent = "Saved " + ts;
+   el.classList.remove('saving');
+ }, 400);
 }
 
 async function restoreAutoSave() {
-  if (!cryptoKey) return false;
-  try {
-    const raw = localStorage.getItem(AUTOSAVE_KEY);
-    if (!raw) return false;
-    const encrypted = JSON.parse(raw);
-    const data = await decryptJSON(encrypted, cryptoKey);
-    if (Array.isArray(data.plays) && data.plays.length > 0) {
-      plays = data.plays;
-      if (data.filename) document.getElementById('filename').value = data.filename;
-      renderTable();
-      const ts = data.savedAt ? new Date(data.savedAt).toLocaleString() : 'unknown';
-      toast("Restored " + plays.length + " plays from " + ts);
-      return true;
-    }
-  } catch (e) { console.warn("Restore failed:", e); }
-  return false;
+ if (!cryptoKey) return false;
+ try {
+   const raw = localStorage.getItem(AUTOSAVE_KEY);
+   if (!raw) return false;
+   const encrypted = JSON.parse(raw);
+   const data = await decryptJSON(encrypted, cryptoKey);
+   if (Array.isArray(data.plays) && data.plays.length > 0) {
+     plays = data.plays;
+     if (data.filename) document.getElementById('filename').value = data.filename;
+     renderTable();
+     const ts = data.savedAt ? new Date(data.savedAt).toLocaleString() : 'unknown';
+     toast("Restored " + plays.length + " plays from " + ts);
+     return true;
+   }
+ } catch (e) { console.warn("Restore failed:", e); }
+ return false;
 }
 
 function resetAll() {
-  if (plays.length === 0) { toast("Already empty", true); return; }
-  if (!confirm("Reset will delete all " + plays.length + " plays. Save first if you want to keep them. Continue?")) return;
-  plays = [];
-  localStorage.removeItem(AUTOSAVE_KEY);
-  document.getElementById('loadedName').textContent = '';
-  renderTable();
-  toast("Reset complete");
+ if (plays.length === 0) { toast("Already empty", true); return; }
+ if (!confirm("Reset will delete all " + plays.length + " plays. Save first if you want to keep them. Continue?")) return;
+ plays = [];
+ localStorage.removeItem(AUTOSAVE_KEY);
+ document.getElementById('loadedName').textContent = '';
+ renderTable();
+ toast("Reset complete");
 }
 
 // SPEECH
 function initSpeech() {
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) {
-    document.getElementById('micBtn').disabled = true;
-    document.getElementById('micStatus').textContent = "Speech not supported";
-    return null;
-  }
-  const r = new SR();
-  r.continuous = true; r.interimResults = true; r.lang = 'en-US';
-  r.onresult = (e) => {
-    let interim = '', final = '';
-    for (let i = e.resultIndex; i < e.results.length; i++) {
-      const t = e.results[i][0].transcript;
-      if (e.results[i].isFinal) final += t + ' ';
-      else interim += t;
-    }
-    if (final) currentTranscript += final;
-    const display = (currentTranscript + interim).trim();
-    const tEl = document.getElementById('transcript');
-    if (display) {
-      tEl.textContent = display;
-      tEl.classList.remove('empty');
-      tEl.classList.add('live');
-      parseAndFill(currentTranscript + interim);
-    }
-  };
-  r.onerror = (e) => { document.getElementById('micStatus').textContent = "Error: " + e.error; };
-  r.onend = () => {
-    if (recognitionShouldRun) { try { r.start(); } catch(_) {} }
-    else {
-      const status = document.getElementById('micStatus');
-      status.textContent = "Ready"; status.classList.remove('live');
-      document.getElementById('micBtn').classList.remove('listening');
-      document.getElementById('micBtn').textContent = "  TAP TO SPEAK";
-      document.getElementById('transcript').classList.remove('live');
-      isListening = false;
-    }
-  };
-  return r;
+ const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+ if (!SR) {
+   document.getElementById('micBtn').disabled = true;
+   document.getElementById('micStatus').textContent = "Speech not supported";
+   return null;
+ }
+ const r = new SR();
+ r.continuous = true; r.interimResults = true; r.lang = 'en-US';
+ r.onresult = (e) => {
+   let interim = '', final = '';
+   for (let i = e.resultIndex; i < e.results.length; i++) {
+     const t = e.results[i][0].transcript;
+     if (e.results[i].isFinal) final += t + ' ';
+     else interim += t;
+   }
+   if (final) currentTranscript += final;
+   const display = (currentTranscript + interim).trim();
+   const tEl = document.getElementById('transcript');
+   if (display) {
+     tEl.textContent = display;
+     tEl.classList.remove('empty');
+     tEl.classList.add('live');
+     parseAndFill(currentTranscript + interim);
+   }
+ };
+ r.onerror = (e) => { document.getElementById('micStatus').textContent = "Error: " + e.error; };
+ r.onend = () => {
+   if (recognitionShouldRun) { try { r.start(); } catch(_) {} }
+   else {
+     const status = document.getElementById('micStatus');
+     status.textContent = "Ready"; status.classList.remove('live');
+     document.getElementById('micBtn').classList.remove('listening');
+     document.getElementById('micBtn').textContent = "🎤 TAP TO SPEAK";
+     document.getElementById('transcript').classList.remove('live');
+     isListening = false;
+   }
+ };
+ return r;
 }
 
 function toggleMic() {
-  if (!recognition) recognition = initSpeech();
-  if (!recognition) return;
-  if (isListening) { recognitionShouldRun = false; recognition.stop(); }
-  else {
-    currentTranscript = "";
-    document.getElementById('transcript').textContent = "Listening...";
-    document.getElementById('transcript').classList.remove('empty');
-    document.getElementById('transcript').classList.add('live');
-    clearFields(true);
-    recognitionShouldRun = true;
-    try {
-      recognition.start();
-      isListening = true;
-      const status = document.getElementById('micStatus');
-      status.textContent = "Listening"; status.classList.add('live');
-      document.getElementById('micBtn').classList.add('listening');
-      document.getElementById('micBtn').textContent = "■ STOP";
-    } catch(e) { toast("Mic error: " + e.message, true); }
-  }
+ if (!recognition) recognition = initSpeech();
+ if (!recognition) return;
+ if (isListening) { recognitionShouldRun = false; recognition.stop(); }
+ else {
+   currentTranscript = "";
+   document.getElementById('transcript').textContent = "Listening...";
+   document.getElementById('transcript').classList.remove('empty');
+   document.getElementById('transcript').classList.add('live');
+   clearFields(true);
+   recognitionShouldRun = true;
+   try {
+     recognition.start();
+     isListening = true;
+     const status = document.getElementById('micStatus');
+     status.textContent = "Listening"; status.classList.add('live');
+     document.getElementById('micBtn').classList.add('listening');
+     document.getElementById('micBtn').textContent = "■ STOP";
+   } catch(e) { toast("Mic error: " + e.message, true); }
+ }
 }
 
+// ============================================================
 // PARSING
+// ============================================================
 function normalize(text) {
-  let s = text.toLowerCase().trim().replace(/[,.!?;:]/g, ' ');
-  for (const [pat, rep] of ALIASES) s = s.replace(pat, rep);
-  return s.replace(/\s+/g, ' ').trim();
+ let s = text.toLowerCase().trim().replace(/[,.!?;:]/g, ' ');
+ for (const [pat, rep] of ALIASES) s = s.replace(pat, rep);
+ return s.replace(/\s+/g, ' ').trim();
 }
 
 function findMatch(text, candidates) {
-  const sorted = [...candidates].sort((a,b) => b.length - a.length);
-  for (const c of sorted) {
-    const escaped = c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const re = new RegExp('(^|\\s)' + escaped + '(\\s|$)', 'i');
-    if (re.test(' ' + text + ' ')) return c;
-  }
-  return null;
+ const sorted = [...candidates].sort((a,b) => b.length - a.length);
+ for (const c of sorted) {
+   const escaped = c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+   const re = new RegExp('(^|\\s)' + escaped + '(\\s|$)', 'i');
+   if (re.test(' ' + text + ' ')) return c;
+ }
+ return null;
+}
+
+// PRESSURE FAMILY: [SIM] + [3/4/5 DOWN | NOC | GAPS] + [count] + [location]
+function matchPressureFamily(text) {
+ const hasSim = /\bsim\b/.test(text);
+ let structure = "", after = -1, m;
+ if ((m = text.match(/\bnoc\b/)))            { structure = "NOC";  after = m.index + m[0].length; }
+ else if ((m = text.match(/\bgaps\b/)))      { structure = "GAPS"; after = m.index + m[0].length; }
+ else if ((m = text.match(/\b([345])\s*down\b/))) { structure = m[1] + " DOWN"; after = m.index + m[0].length; }
+ if (!structure) return "";
+
+ const rest = text.slice(after);
+ let count = "", location = "";
+ for (const loc of PF_LOCATIONS) {
+   const esc = loc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+   const rm = rest.match(new RegExp('(?:(\\d+)\\s+)?' + esc + '\\b'));
+   if (rm) { count = rm[1] || ""; location = loc; break; }
+ }
+ if (!location) return "";
+
+ const parts = [];
+ if (hasSim) parts.push("SIM");
+ parts.push(structure);
+ parts.push((count ? count + " " : "") + location.toUpperCase());
+ return parts.join(" - ");
+}
+
+// COVERAGE: anchor on a tag, grab the number in front of it, chain trailing tags
+function covTagLenAt(tokens, i) {
+ for (const tag of COV_TAGS) {
+   const w = tag.split(' ');
+   if (tokens.slice(i, i + w.length).join(' ') === tag) return w.length;
+ }
+ return 0;
+}
+
+function matchCoverage(text) {
+ const hasFence = /\bfence\b/.test(text);
+ const tokens = text.split(' ').filter(Boolean);
+
+ let anchor = -1;
+ for (let i = 0; i < tokens.length; i++) { if (covTagLenAt(tokens, i)) { anchor = i; break; } }
+
+ let phrase = "";
+ if (anchor >= 0) {
+   let start = anchor;
+   if (anchor > 0 && COV_BASE.test(tokens[anchor - 1])) start = anchor - 1;
+   const out = [];
+   for (let j = start; j < tokens.length; j++) {
+     const step = covTagLenAt(tokens, j);
+     if (COV_BASE.test(tokens[j])) { out.push(tokens[j]); }
+     else if (step) { for (let k = 0; k < step; k++) out.push(tokens[j + k]); j += step - 1; }
+     else if (out.length) break;
+   }
+   phrase = out.join(' ');
+ } else if (tokens.includes('gl')) {
+   const gi = tokens.indexOf('gl');
+   phrase = 'gl' + (COV_BASE.test(tokens[gi + 1] || '') ? ' ' + tokens[gi + 1] : '');
+ } else {
+   for (let i = tokens.length - 1; i >= 0; i--) {
+     if (COV_BASE.test(tokens[i]) && tokens[i + 1] !== 'down') { phrase = tokens[i]; break; }
+   }
+ }
+
+ if (!phrase) return hasFence ? 'fence' : null;
+ return hasFence ? 'fence ' + phrase : phrase;
 }
 
 function parseAndFill(rawText) {
-  const text = normalize(rawText);
-  const matches = {
-    personnel: findMatch(text, TAXONOMY.personnel),
-    front: findMatch(text, TAXONOMY.front),
-    stunt: findMatch(text, TAXONOMY.stunt),
-    pressure: findMatch(text, TAXONOMY.pressure),
-    coverage: findMatch(text, TAXONOMY.coverage),
-  };
-  for (const [k, v] of Object.entries(matches)) {
-    const el = document.getElementById('f-' + k);
-    const wrap = document.getElementById('field-' + k);
-    if (v && !el.dataset.manual) {
-      el.value = formatTerm(v);
-      wrap.classList.add('matched');
-    }
-  }
+ const text = normalize(rawText);
+
+ // simple single-term fields
+ const matches = {
+   personnel: findMatch(text, TAXONOMY.personnel),
+   front: findMatch(text, TAXONOMY.front),
+   stunt: findMatch(text, TAXONOMY.stunt),
+   pressure: findMatch(text, TAXONOMY.pressure),
+ };
+ for (const [k, v] of Object.entries(matches)) {
+   if (v) fill(k, formatTerm(v));
+ }
+
+ // pressure family (pre-formatted compound tag — do NOT run through formatTerm)
+ const pf = matchPressureFamily(text);
+ if (pf) fill('pressureFamily', pf);
+
+ // coverage (compositional, optional FENCE)
+ const cov = matchCoverage(text);
+ if (cov) fill('coverage', formatTerm(cov));
+}
+
+function fill(key, value) {
+ const el = document.getElementById('f-' + key);
+ const wrap = document.getElementById('field-' + key);
+ if (!el || el.dataset.manual) return;
+ el.value = value;
+ wrap.classList.add('matched');
 }
 
 function formatTerm(t) {
-  return t.split(' ').map(w => {
-    if (/^[\$\-]|^\d/.test(w)) return w.toUpperCase();
-    if (w.length <= 2) return w.toUpperCase();
-    return w.charAt(0).toUpperCase() + w.slice(1);
-  }).join(' ');
+ return t.split(' ').map(w => {
+   if (w === '-') return '-';
+   if (/^[\$\-]|^\d/.test(w)) return w.toUpperCase();
+   if (w.length <= 2) return w.toUpperCase();
+   return w.charAt(0).toUpperCase() + w.slice(1);
+ }).join(' ');
 }
 
-['personnel','front','stunt','pressure','coverage'].forEach(f => {
-  const el = document.getElementById('f-' + f);
-  el.addEventListener('input', () => { el.dataset.manual = "1"; });
+FIELDS.forEach(f => {
+ const el = document.getElementById('f-' + f);
+ el.addEventListener('input', () => { el.dataset.manual = "1"; });
 });
 
 // DATA
 function clearFields(keepTranscript = false) {
-  ['personnel','front','stunt','pressure','coverage'].forEach(f => {
-    const el = document.getElementById('f-' + f);
-    el.value = ""; delete el.dataset.manual;
-    document.getElementById('field-' + f).classList.remove('matched');
-  });
-  if (!keepTranscript) {
-    document.getElementById('transcript').textContent = "Say a play — e.g. \"nickel, over, nike, plug m-a, three buzz\"";
-    document.getElementById('transcript').classList.add('empty');
-    document.getElementById('transcript').classList.remove('live');
-    currentTranscript = "";
-  }
+ FIELDS.forEach(f => {
+   const el = document.getElementById('f-' + f);
+   el.value = ""; delete el.dataset.manual;
+   document.getElementById('field-' + f).classList.remove('matched');
+ });
+ if (!keepTranscript) {
+   document.getElementById('transcript').textContent = "Say a play — e.g. \"odd, sim three down internal, m-plug, fence two tampa\"";
+   document.getElementById('transcript').classList.add('empty');
+   document.getElementById('transcript').classList.remove('live');
+   currentTranscript = "";
+ }
 }
 
 function getFields() {
-  return {
-    personnel: document.getElementById('f-personnel').value.trim(),
-    front: document.getElementById('f-front').value.trim(),
-    stunt: document.getElementById('f-stunt').value.trim(),
-    pressure: document.getElementById('f-pressure').value.trim(),
-    coverage: document.getElementById('f-coverage').value.trim(),
-  };
+ const o = {};
+ FIELDS.forEach(f => { o[f] = document.getElementById('f-' + f).value.trim(); });
+ return o;
 }
 
 async function addPlay() {
-  const p = getFields();
-  if (!p.personnel && !p.front && !p.stunt && !p.pressure && !p.coverage) { toast("Empty play", true); return; }
-  plays.push(p);
-  renderTable();
-  await autoSave();
-  clearFields();
-  if (isListening) toggleMic();
-  toast("Play " + plays.length + " logged", false, 'success');
+ const p = getFields();
+ if (FIELDS.every(f => !p[f])) { toast("Empty play", true); return; }
+ plays.push(p);
+ renderTable();
+ await autoSave();
+ clearFields();
+ if (isListening) toggleMic();
+ toast("Play " + plays.length + " logged", false, 'success');
 }
 
 function renderTable() {
-  const tb = document.getElementById('tbody');
-  tb.innerHTML = '';
-  plays.forEach((p, i) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td class="idx">${i+1}</td><td>${esc(p.personnel)}</td><td>${esc(p.front)}</td><td>${esc(p.stunt)}</td><td>${esc(p.pressure)}</td><td>${esc(p.coverage)}</td><td class="del"><button class="del-btn" onclick="delPlay(${i})" title="Delete">×</button></td>`;
-    tb.appendChild(tr);
-  });
-  document.getElementById('playCount').textContent = plays.length;
-  const wrap = document.querySelector('.table-wrap');
-  if (wrap) wrap.scrollTop = wrap.scrollHeight;
+ const tb = document.getElementById('tbody');
+ tb.innerHTML = '';
+ plays.forEach((p, i) => {
+   const tr = document.createElement('tr');
+   tr.innerHTML = `<td class="idx">${i+1}</td><td>${esc(p.personnel)}</td><td>${esc(p.front)}</td><td>${esc(p.stunt)}</td><td>${esc(p.pressureFamily)}</td><td>${esc(p.pressure)}</td><td>${esc(p.coverage)}</td><td class="del"><button class="del-btn" onclick="delPlay(${i})" title="Delete">×</button></td>`;
+   tb.appendChild(tr);
+ });
+ document.getElementById('playCount').textContent = plays.length;
+ const wrap = document.querySelector('.table-wrap');
+ if (wrap) wrap.scrollTop = wrap.scrollHeight;
 }
 
 async function delPlay(i) {
-  if (confirm("Delete play " + (i+1) + "?")) {
-    plays.splice(i, 1);
-    renderTable();
-    await autoSave();
-  }
+ if (confirm("Delete play " + (i+1) + "?")) {
+   plays.splice(i, 1);
+   renderTable();
+   await autoSave();
+ }
 }
 
 function esc(s) {
-  return (s || '—').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+ return (s || '—').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
 }
 
 // FILE I/O (encrypted)
 async function saveFile() {
-  if (!cryptoKey) { toast("Not authenticated", true); return; }
-  const name = (document.getElementById('filename').value || 'game_chart').replace(/[^a-z0-9_-]/gi, '_');
-  const data = { version: 2, savedAt: new Date().toISOString(), plays };
-  const encrypted = await encryptJSON(data, cryptoKey);
-  const stored = JSON.parse(localStorage.getItem(VERIFY_KEY));
-  const bundle = { format: "def_charting_enc_v1", salt: stored.salt, ...encrypted };
-  const blob = new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/octet-stream' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = name + '.enc';
-  a.click();
-  URL.revokeObjectURL(url);
-  document.getElementById('passCount').textContent = plays.length;
-  toast("Encrypted & saved", false, 'success');
+ if (!cryptoKey) { toast("Not authenticated", true); return; }
+ const name = (document.getElementById('filename').value || 'game_chart').replace(/[^a-z0-9_-]/gi, '_');
+ const data = { version: 3, savedAt: new Date().toISOString(), plays };
+ const encrypted = await encryptJSON(data, cryptoKey);
+ const stored = JSON.parse(localStorage.getItem(VERIFY_KEY));
+ const bundle = { format: "def_charting_enc_v1", salt: stored.salt, ...encrypted };
+ const blob = new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/octet-stream' });
+ const url = URL.createObjectURL(blob);
+ const a = document.createElement('a');
+ a.href = url; a.download = name + '.enc';
+ a.click();
+ URL.revokeObjectURL(url);
+ document.getElementById('passCount').textContent = plays.length;
+ toast("Encrypted & saved", false, 'success');
 }
 
 async function loadFile(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = async (ev) => {
-    try {
-      const bundle = JSON.parse(ev.target.result);
-      if (bundle.format === "def_charting_enc_v1") {
-        const data = await decryptJSON({ iv: bundle.iv, ct: bundle.ct }, cryptoKey);
-        if (Array.isArray(data.plays)) {
-          plays = data.plays;
-          renderTable();
-          await autoSave();
-          document.getElementById('loadedName').textContent = "Loaded: " + file.name;
-          document.getElementById('filename').value = file.name.replace(/\.enc$/, '');
-          toast("Loaded " + plays.length + " plays", false, 'success');
-        }
-      } else if (Array.isArray(bundle.plays)) {
-        plays = bundle.plays;
-        renderTable();
-        await autoSave();
-        document.getElementById('loadedName').textContent = "Loaded (legacy): " + file.name;
-        document.getElementById('filename').value = file.name.replace(/\.json$/, '');
-        toast("Loaded " + plays.length + " plays (was unencrypted)");
-      } else {
-        toast("Invalid file format", true);
-      }
-    } catch (err) { toast("Decrypt failed — wrong password?", true); }
-  };
-  reader.readAsText(file);
-  e.target.value = '';
+ const file = e.target.files[0];
+ if (!file) return;
+ const reader = new FileReader();
+ reader.onload = async (ev) => {
+   try {
+     const bundle = JSON.parse(ev.target.result);
+     if (bundle.format === "def_charting_enc_v1") {
+       const data = await decryptJSON({ iv: bundle.iv, ct: bundle.ct }, cryptoKey);
+       if (Array.isArray(data.plays)) {
+         plays = data.plays;
+         renderTable();
+         await autoSave();
+         document.getElementById('loadedName').textContent = "Loaded: " + file.name;
+         document.getElementById('filename').value = file.name.replace(/\.enc$/, '');
+         toast("Loaded " + plays.length + " plays", false, 'success');
+       }
+     } else if (Array.isArray(bundle.plays)) {
+       plays = bundle.plays;
+       renderTable();
+       await autoSave();
+       document.getElementById('loadedName').textContent = "Loaded (legacy): " + file.name;
+       document.getElementById('filename').value = file.name.replace(/\.json$/, '');
+       toast("Loaded " + plays.length + " plays (was unencrypted)");
+     } else {
+       toast("Invalid file format", true);
+     }
+   } catch (err) { toast("Decrypt failed — wrong password?", true); }
+ };
+ reader.readAsText(file);
+ e.target.value = '';
 }
 
 function exportCSV() {
-  if (plays.length === 0) { toast("No plays to export", true); return; }
-  if (!confirm("CSV export is UNENCRYPTED plain text. Continue?")) return;
-  const headers = ['#','Personnel','Front','Stunt','Pressure','Coverage'];
-  const rows = [headers.join(',')];
-  plays.forEach((p, i) => {
-    const row = [i+1, p.personnel, p.front, p.stunt, p.pressure, p.coverage]
-      .map(v => `"${(v||'').replace(/"/g,'""')}"`).join(',');
-    rows.push(row);
-  });
-  const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
-  const name = (document.getElementById('filename').value || 'game_chart').replace(/[^a-z0-9_-]/gi, '_');
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = name + '.csv';
-  a.click();
-  URL.revokeObjectURL(url);
-  toast("CSV exported (unencrypted)");
+ if (plays.length === 0) { toast("No plays to export", true); return; }
+ if (!confirm("CSV export is UNENCRYPTED plain text. Continue?")) return;
+ const headers = ['#','Personnel','Front','Stunt','Pressure Family','Pressure Type','Coverage'];
+ const rows = [headers.join(',')];
+ plays.forEach((p, i) => {
+   const row = [i+1, p.personnel, p.front, p.stunt, p.pressureFamily, p.pressure, p.coverage]
+     .map(v => `"${(v||'').replace(/"/g,'""')}"`).join(',');
+   rows.push(row);
+ });
+ const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+ const name = (document.getElementById('filename').value || 'game_chart').replace(/[^a-z0-9_-]/gi, '_');
+ const url = URL.createObjectURL(blob);
+ const a = document.createElement('a');
+ a.href = url; a.download = name + '.csv';
+ a.click();
+ URL.revokeObjectURL(url);
+ toast("CSV exported (unencrypted)");
 }
 
 function toast(msg, isError = false, kind = '') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.remove('error', 'success');
-  if (isError) t.classList.add('error');
-  else if (kind) t.classList.add(kind);
-  t.classList.add('show');
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+ const t = document.getElementById('toast');
+ t.textContent = msg;
+ t.classList.remove('error', 'success');
+ if (isError) t.classList.add('error');
+ else if (kind) t.classList.add(kind);
+ t.classList.add('show');
+ clearTimeout(window._toastTimer);
+ window._toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
 }
 
 document.addEventListener('keydown', (e) => {
-  if (document.getElementById('authModal').classList.contains('active')) return;
-  if (e.target.tagName === 'INPUT' && e.target.type === 'text') {
-    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) addPlay();
-    return;
-  }
-  if (e.key === ' ') { e.preventDefault(); toggleMic(); }
-  else if (e.key === 'Enter') { addPlay(); }
-  else if (e.key === 'Escape') { clearFields(); }
+ if (document.getElementById('authModal').classList.contains('active')) return;
+ if (e.target.tagName === 'INPUT' && e.target.type === 'text') {
+   if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) addPlay();
+   return;
+ }
+ if (e.key === ' ') { e.preventDefault(); toggleMic(); }
+ else if (e.key === 'Enter') { addPlay(); }
+ else if (e.key === 'Escape') { clearFields(); }
 });
 
 function spawnEmbers() {
-  const container = document.getElementById('embers');
-  for (let i = 0; i < 12; i++) {
-    const e = document.createElement('div');
-    e.className = 'ember';
-    e.style.left = Math.random() * 100 + '%';
-    e.style.animationDuration = (8 + Math.random() * 8) + 's';
-    e.style.animationDelay = (Math.random() * 8) + 's';
-    e.style.opacity = (0.3 + Math.random() * 0.5);
-    container.appendChild(e);
-  }
+ const container = document.getElementById('embers');
+ for (let i = 0; i < 12; i++) {
+   const e = document.createElement('div');
+   e.className = 'ember';
+   e.style.left = Math.random() * 100 + '%';
+   e.style.animationDuration = (8 + Math.random() * 8) + 's';
+   e.style.animationDelay = (Math.random() * 8) + 's';
+   e.style.opacity = (0.3 + Math.random() * 0.5);
+   container.appendChild(e);
+ }
 }
 
 // INIT
